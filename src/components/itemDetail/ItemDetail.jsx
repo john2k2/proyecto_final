@@ -1,7 +1,7 @@
 import React from "react";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import Item from "../item/Item";
+import Items from "../item/Items";
 
 const ItemDetail = () => {
   const [item, setItem] = useState({});
@@ -16,15 +16,7 @@ const ItemDetail = () => {
 
   return (
     <div className="detail">
-      {item.map((prod) => {
-        console.log(prod);
-        return (
-          <div>
-            <Item prod={prod} />
-            
-          </div>
-        );
-      })}
+      <Items item={item} />
     </div>
   );
 };
