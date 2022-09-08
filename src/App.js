@@ -1,27 +1,27 @@
 import "./App.css";
-import ItemListContainer from "./components/ItemListContainer/ItemListCointainer";
 import Navbar from "./components/navBar/Navbar";
-import { BrowserRouter, routes, route } from "react-router-dom";
-
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import ItemDetail from "./components/itemDetail/ItemDetail";
+import ItemListContainer from "./components/ItemListContainer/ItemListCointainer";
 
 //pages
 
-import Home from "./pages/Home";
-import About from "./pages/About";
-import Contact from "./pages/Contact";
+import About from "./Pages/About/about";
+import Contact from "./Pages/Contact/contact";
 
 const App = () => {
   return (
-    <div>
-      <Navbar />
-      <BrowserRouter>
-        <routes>
-          <route path="/" element={<Home />} />
-          <route path="." element={<About />} />
-          <route path="/" element={<Contact />} />
-        </routes>
-      </BrowserRouter>
-    </div>
+    <Router>
+      <div>
+        <Navbar />
+        <Routes>
+          <Route path="/" element={<ItemListContainer/>} />
+          <Route path="/about" element={<About />} />
+          <Route path="/contact" element={<Contact />} />
+          <Route path="/detail/:id" element={<ItemDetail />} />
+        </Routes>
+      </div>
+    </Router>
   );
 };
 
