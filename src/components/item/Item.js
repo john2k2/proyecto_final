@@ -9,17 +9,18 @@ import "./item.css";
 
 const Item = ({ prod }) => {
   return (
-    <Card className="card" sx={{ maxWidth: 445 }}>
+    <Card className="card" sx={{ maxWidth: 345 }}>
       <CardActionArea>
         <CardMedia
           component="img"
           image={prod.image}
-          height="140"
-          alt="green iguana"
+          height="340"
+          alt={prod.title}
         />
         <CardContent>
           <Typography gutterBottom variant="h5" component="div">
-            {prod.title}
+            <h2>{prod.title}</h2>
+            <p>{prod.category}</p>
           </Typography>
         </CardContent>
       </CardActionArea>

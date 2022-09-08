@@ -4,13 +4,13 @@ import CardContent from "@mui/material/CardContent";
 import CardMedia from "@mui/material/CardMedia";
 import Typography from "@mui/material/Typography";
 import { CardActionArea } from "@mui/material";
-import "./item.css";
+import "./items.css";
 //components
 
 const Item = ({ item }) => {
   return (
-    <Card className="card" sx={{ maxWidth: 445 }}>
-      <CardActionArea>
+    <Card className="container" sx={{ maxWidth: 445 }}>
+      <CardActionArea className="card">
         <CardMedia
           component="img"
           image={item.image}
@@ -19,8 +19,10 @@ const Item = ({ item }) => {
         />
         <CardContent>
           <Typography gutterBottom variant="h5" component="div">
-            {item.category}${item.price}
-            {item.description}
+            <div className="detalle">
+              <h2>${item.price}</h2>
+              <p>{item.description}</p>
+            </div>
           </Typography>
         </CardContent>
       </CardActionArea>
