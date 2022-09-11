@@ -1,10 +1,9 @@
 import React, { useState } from "react";
 import "./itemCount.css";
-import { TextField } from "@mui/material";
 
-const ItemCount = (onAdd) => {
-  let stock = 5;
+const ItemCount = ({ onAdd }) => {
   let initial = 1;
+  let stock = 5;
 
   const [count, setCount] = useState(initial);
 
@@ -22,12 +21,10 @@ const ItemCount = (onAdd) => {
     }
   };
 
-  const onChangeValue = (e) => {
-    console.log(e.count.value);
-  };
-
-  const agregarAlCarrito = () => {
-    onAdd(count);
+  const handleAdd = () => {
+    if (count <= stock) {
+      alert("Agregaste " + count + " productos al carrito");
+    }
   };
 
   return (
@@ -39,9 +36,7 @@ const ItemCount = (onAdd) => {
           <button onClick={handleIncrement}>+</button>
         </div>
         <div className="count-carrito">
-          <button onClick={agregarAlCarrito} onChangeCapture={onChangeValue}>
-            Agregar al carrito
-          </button>
+          <button onClick={handleAdd}>Agregar al carrito</button>
         </div>
       </div>
     </div>
