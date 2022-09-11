@@ -1,0 +1,24 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+.carrito {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 10%;
+  height: 100%;
+}
+.carrito span {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: rgb(232, 232, 232);
+  text-align: center;
+}
+.carrito p {
+  font-size: 1rem;
+  font-weight: bold;
+  color: rgb(232, 232, 232);
+  text-align: center;
+}

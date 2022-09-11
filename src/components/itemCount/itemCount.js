@@ -1,8 +1,11 @@
 import React, { useState } from "react";
 import "./itemCount.css";
+import { TextField } from "@mui/material";
 
+const ItemCount = (onAdd) => {
+  let stock = 5;
+  let initial = 1;
 
-const ItemCount = ({ stock, initial, onAdd }) => {
   const [count, setCount] = useState(initial);
 
   const handleIncrement = () => {
@@ -19,25 +22,30 @@ const ItemCount = ({ stock, initial, onAdd }) => {
     }
   };
 
+  const onChangeValue = (e) => {
+    console.log(e.count.value);
+  };
+
   const agregarAlCarrito = () => {
     onAdd(count);
   };
 
   return (
-    <div className="Count">
+    <div className="container1">
       <h2>{count} </h2>
-      <div className="Count-btn">
-        <button onClick={handleDecrement}>-</button>
-        <button onClick={handleIncrement}>+</button>
-      </div>
-      <div className="Count-carrito">
-        <button onClick={agregarAlCarrito}>Agregar al carrito</button>
+      <div className="container2">
+        <div className="count-btn">
+          <button onClick={handleDecrement}>-</button>
+          <button onClick={handleIncrement}>+</button>
+        </div>
+        <div className="count-carrito">
+          <button onClick={agregarAlCarrito} onChangeCapture={onChangeValue}>
+            Agregar al carrito
+          </button>
+        </div>
       </div>
     </div>
   );
 };
-
-
-
 
 export default ItemCount;
