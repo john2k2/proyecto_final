@@ -5,7 +5,7 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 //Components
 import Form from "./components/Form/Form";
 import ItemListContainer from "./components/ItemListContainer/ItemListCointainer";
-import itemDetailContainer from "./components/itemDetailContainer/itemDetailContainer";
+import ItemDetailContainer from "./components/itemDetailContainer/itemDetailContainer";
 
 //pages
 import About from "./Pages/About/about";
@@ -21,7 +21,7 @@ const App = () => {
           <Route path="/" element={<ItemListContainer />} />
           <Route path="/about" element={<About />} />
           <Route path="/contact" element={<Contact />} />
-          <Route path="/detail/:id" element={<itemDetailContainer />} />
+          <Route path="/detail/:id" element={<ItemDetailContainer />} />
         </Routes>
       </div>
     </Router>
