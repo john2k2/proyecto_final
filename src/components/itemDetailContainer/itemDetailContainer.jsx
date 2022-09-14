@@ -1,9 +1,9 @@
 import React from "react";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import ItemDetail from "../itemDetail/ItemDetail";
+import ItemDetail from "../itemDetail/itemDetail";
 
-const itemDetailContainer = () => {
+const ItemDetailContainer = () => {
   const [item, setItem] = useState({});
 
   let { id } = useParams();
@@ -21,4 +21,4 @@ const itemDetailContainer = () => {
   );
 };
 
-export default itemDetailContainer;
+export default ItemDetailContainer;

@@ -1,46 +1,38 @@
 import React, { useState } from "react";
 import "./itemCount.css";
+import { Link } from "react-router-dom";
 
-const ItemCount = ({ onAdd }) => {
-  let initial = 1;
-  let stock = 5;
+const ItemCount = ({ setPurchase, name, stock }) => {
+  const [initial, setInitial] = useState(0);
 
-  const [count, setCount] = useState(initial);
-
-  const handleIncrement = () => {
-    if (count < stock) {
-      setCount(count + 1);
-    }
-    if (count === stock) {
-      alert("No hay mas stock");
-    }
-  };
-  const handleDecrement = () => {
-    if (count > 1) {
-      setCount(count - 1);
-    }
+  const onAdd = () => {
+    return initial < 5 ? setInitial(initial + 1) : null;
   };
 
-  const handleAdd = () => {
-    if (count <= stock) {
-      alert("Agregaste " + count + " productos al carrito");
-    }
+  const onRemove = () => {
+    return initial > 0 ? setInitial(initial - 1) : null;
   };
 
-  return (
-    <div className="container1">
-      <h2>{count} </h2>
-      <div className="container2">
-        <div className="count-btn">
-          <button onClick={handleDecrement}>-</button>
-          <button onClick={handleIncrement}>+</button>
-        </div>
-        <div className="count-carrito">
-          <button onClick={handleAdd}>Agregar al carrito</button>
+  initial > 0 ? (setPurchase = false) : (setPurchase = true);
+
+  if (setPurchase) {
+    return (
+      <div className="container1">
+        <h2>{initial} </h2>
+        <div className="container2">
+          <div className="count-btn">
+            <button onClick={onRemove}>-</button>
+            <button onClick={onAdd}>+</button>
+          </div>
+          <div className="count-carrito">
+            <Link to="/cart">
+              <button>Agregar al carrito</button>
+            </Link>
+          </div>
         </div>
       </div>
-    </div>
-  );
+    );
+  }
 };
 
 export default ItemCount;
