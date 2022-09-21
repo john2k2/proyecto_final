@@ -7,29 +7,27 @@ const ItemCount = ({ name, stock }) => {
   const { count } = useItemContext();
 
   const [initial, setInitial] = useState(0);
-  let contador = 0;
+  const [adding, setAdding] = useState(true);
 
-  const onAdd = (e) => {
-    if (count < stock) {
+  const add = () => {
+    if (initial < stock) {
       setInitial(initial + 1);
-      console.log(initial);
     } else {
       alert("No hay mas stock");
     }
   };
-  const onRemove = () => {
-    return initial > 0 ? setInitial(initial - 1) : null;
-  };
 
-  const onChangeValue = (e) => {
-    setInitial(e.target.value + count);
-  };
-
-  const onPurchase = (e) => {
-    e.preventDefault();
+  const remove = () => {
     if (initial > 0) {
-      contador = initial + count;
+      setInitial(initial - 1);
+    } else {
+      alert("No hay mas stock");
     }
+  };
+
+  const onAdd = () => {
+    alert("Agregaste " + initial + " " + "productos" + " al carrito");
+    setAdding(false);
   };
 
   return (
@@ -37,14 +35,14 @@ const ItemCount = ({ name, stock }) => {
       <h2>{initial} </h2>
       <div className="container2">
         <div className="count-btn">
-          <button onClick={onRemove}>-</button>
-          <button onClick={onAdd}>+</button>
+          <button onClick={remove}>-</button>
+          <button onClick={add}>+</button>
         </div>
         <div className="count-carrito">
           <Link to="/Cart">
             <button>Finalizar Compra</button>
           </Link>
-          <button onClick={onPurchase}>Agregar al carrito</button>
+          <button onClick={onAdd}>Agregar al carrito</button>
         </div>
       </div>
     </div>
