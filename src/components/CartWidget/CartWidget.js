@@ -1,12 +1,13 @@
 import "./CartWidget.css";
 import React from "react";
+import { useItemContext } from "../../context/context";
 
 const CartWidget = () => {
-  let monto = 0;
+  const { count } = useItemContext();
   return (
     <div className="carrito">
       <span class="material-symbols-outlined">shopping_cart</span>
-      <p> {monto} </p>
+      <span>{count}</span>
     </div>
   );
 };

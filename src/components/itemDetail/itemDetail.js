@@ -5,6 +5,7 @@ import CardMedia from "@mui/material/CardMedia";
 import Typography from "@mui/material/Typography";
 import { CardActionArea } from "@mui/material";
 import "./itemDetail.css";
+
 //components
 
 import ItemCount from "../ItemCount/itemCount";
@@ -32,7 +33,7 @@ const ItemDetail = ({ item }) => {
         </CardActionArea>
       </Card>
       <div className="container-count">
-        <ItemCount stock={5} setPurchase={true} name={item.title} />
+        <ItemCount stock={10} setPurchase={true} />
       </div>
     </div>
   );
