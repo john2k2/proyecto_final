@@ -3,40 +3,45 @@ import "./itemCount.css";
 import { Link } from "react-router-dom";
 import { useItemContext } from "../../context/context";
 
-const ItemCount = ({ stock }) => {
+const ItemCount = ({ stock, onAdd, initial }) => {
   const { count, addItem } = useItemContext();
 
-  const [initial, setInitial] = useState(0);
+  const [cantidad, setCantidad] = useState(initial);
 
-  const add = () => {
-    if (initial < stock) {
-      setInitial(initial + 1);
+  const sumar = () => {
+    if (cantidad < stock) {
+      setCantidad(cantidad + 1);
     } else {
       alert("No hay mas stock");
     }
   };
 
-  const remove = () => {
-    initial > 0 && setInitial(initial - 1);
+  const restar = () => {
+    if (cantidad > 1) {
+      setCantidad(cantidad - 1);
+    } else {
+      setCantidad(0);
+    }
   };
 
-  const onAdd = () => {
-    addItem(count + initial);
+  const onAddCart = () => {
+    onAdd(cantidad);
+    addItem(cantidad);
   };
 
   return (
     <div className="container1">
-      <h2>{initial} </h2>
+      <h2>{cantidad} </h2>
       <div className="container2">
         <div className="count-btn">
-          <button onClick={remove}>-</button>
-          <button onClick={add}>+</button>
+          <button onClick={restar}>-</button>
+          <button onClick={sumar}>+</button>
         </div>
         <div className="count-carrito">
           <Link to="/Cart">
             <button>Finalizar Compra</button>
           </Link>
-          <button onClick={onAdd}>Agregar al carrito</button>
+          <button onClick={onAddCart}>Agregar al carrito</button>
         </div>
       </div>
     </div>

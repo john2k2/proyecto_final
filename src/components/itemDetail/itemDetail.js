@@ -11,6 +11,17 @@ import "./itemDetail.css";
 import ItemCount from "../ItemCount/itemCount";
 
 const ItemDetail = ({ item }) => {
+  const [confirmar, setConfirmar] = React.useState(false);
+  const [cantidad, setCantidad] = React.useState(0);
+
+  const onAdd = (cantidad) => {
+    if (cantidad > 0) {
+      setConfirmar(true);
+      setCantidad(cantidad);
+      alert("Se agregó al carrito" + cantidad);
+    }
+  };
+
   return (
     <div>
       <Card className="container" sx={{ maxWidth: 445 }}>
@@ -32,7 +43,7 @@ const ItemDetail = ({ item }) => {
         </CardActionArea>
       </Card>
       <div className="container-count">
-        <ItemCount stock={10} />
+        <ItemCount stock={10} onAdd={onAdd} initial={cantidad} />
       </div>
     </div>
   );
