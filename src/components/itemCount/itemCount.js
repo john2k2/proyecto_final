@@ -3,11 +3,10 @@ import "./itemCount.css";
 import { Link } from "react-router-dom";
 import { useItemContext } from "../../context/context";
 
-const ItemCount = ({ name, stock }) => {
-  const { count } = useItemContext();
+const ItemCount = ({ stock }) => {
+  const { count, addItem } = useItemContext();
 
   const [initial, setInitial] = useState(0);
-  const [adding, setAdding] = useState(true);
 
   const add = () => {
     if (initial < stock) {
@@ -18,16 +17,11 @@ const ItemCount = ({ name, stock }) => {
   };
 
   const remove = () => {
-    if (initial > 0) {
-      setInitial(initial - 1);
-    } else {
-      alert("No hay mas stock");
-    }
+    initial > 0 && setInitial(initial - 1);
   };
 
   const onAdd = () => {
-    alert("Agregaste " + initial + " " + "productos" + " al carrito");
-    setAdding(false);
+    addItem(count + initial);
   };
 
   return (

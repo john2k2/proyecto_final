@@ -1,20 +1,26 @@
 import "./itemListContainer.css";
 import ItemList from "../itemList/itemList";
 import { useEffect, useState } from "react";
-
+import { collection, query, getDocs } from "firebase/firestore";
+import { db } from "../../fireBase/fireBaseConfig";
 
 const ItemListContainer = () => {
-  const [producto, setProductos] = useState([]);
+  const q = query(collection(db, "ropa"));
+  const [prod, setProd] = useState([]);
 
   useEffect(() => {
-    fetch("https://fakestoreapi.com/products")
-      .then((res) => res.json())
-      .then((json) => setProductos(json));
+    getDocs(q).then((querySnapshot) => {
+      const docs = [];
+      querySnapshot.forEach((doc) => {
+        docs.push({ ...doc.data(), id: doc.id });
+      });
+      setProd(docs);
+    });
   }, []);
 
   return (
     <div className="container">
-      <ItemList prod={producto} />
+      <ItemList prod={prod} />
     </div>
   );
 };

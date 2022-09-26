@@ -22,8 +22,20 @@ export const Context = ({ children }) => {
     itemApi();
   }, []);
 
+  const addItem = () => {
+    count++;
+  };
+
   return (
-    <context.Provider value={{ cart, count }}>{children}</context.Provider>
+    <context.Provider
+      value={{
+        cart,
+        count,
+        addItem,
+      }}
+    >
+      {children}
+    </context.Provider>
   );
 };
 

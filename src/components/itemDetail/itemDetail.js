@@ -11,14 +11,13 @@ import "./itemDetail.css";
 import ItemCount from "../ItemCount/itemCount";
 
 const ItemDetail = ({ item }) => {
-
   return (
     <div>
       <Card className="container" sx={{ maxWidth: 445 }}>
         <CardActionArea className="card">
           <CardMedia
             component="img"
-            image={item.image}
+            image={item.img}
             height="140"
             alt="green iguana"
           />
@@ -26,14 +25,14 @@ const ItemDetail = ({ item }) => {
             <Typography gutterBottom variant="h5" component="div">
               <div className="detalle">
                 <h2>${item.price}</h2>
-                <p>{item.description}</p>
+                <p>{item.title}</p>
               </div>
             </Typography>
           </CardContent>
         </CardActionArea>
       </Card>
       <div className="container-count">
-        <ItemCount stock={10} setPurchase={true} />
+        <ItemCount stock={10} />
       </div>
     </div>
   );

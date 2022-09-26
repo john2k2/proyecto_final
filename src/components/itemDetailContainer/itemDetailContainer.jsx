@@ -3,19 +3,27 @@ import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import ItemDetail from "../itemDetail/itemDetail";
 
+import { collection, query, getDocs } from "firebase/firestore";
+import { db } from "../../fireBase/fireBaseConfig";
+
 const ItemDetailContainer = () => {
   const [item, setItem] = useState({});
 
   let { id } = useParams();
 
   useEffect(() => {
-    fetch(`https://fakestoreapi.com/products/${id}`)
-      .then((res) => res.json())
-      .then((json) => setItem(json));
+    const q = query(collection(db, "ropa"));
+    getDocs(q).then((querySnapshot) => {
+      querySnapshot.forEach((doc) => {
+        if (doc.id === id) {
+          setItem({ id: doc.id, ...doc.data() });
+        }
+      });
+    });
   }, [id]);
 
   return (
-    <div className="detail">
+    <div>
       <ItemDetail item={item} />
     </div>
   );
