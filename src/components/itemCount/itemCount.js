@@ -33,7 +33,7 @@ const ItemCount = ({ stock, onAdd, initial }) => {
 
   return (
     <div className="container1">
-      <h2>{cantidad} </h2>
+      <h2>{initial} </h2>
       <div className="container2">
         <div className="count-btn">
           <button onClick={restar}>-</button>

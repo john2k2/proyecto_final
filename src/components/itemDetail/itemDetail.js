@@ -5,6 +5,8 @@ import CardMedia from "@mui/material/CardMedia";
 import Typography from "@mui/material/Typography";
 import { CardActionArea } from "@mui/material";
 import "./itemDetail.css";
+import { useItemContext } from "../../context/CartContext";
+import { Link } from "react-router-dom";
 
 //components
 
@@ -12,11 +14,12 @@ import ItemCount from "../ItemCount/itemCount";
 
 const ItemDetail = ({ item }) => {
   const [confirmar, setConfirmar] = React.useState(false);
-  const [cantidad, setCantidad] = React.useState(0);
 
-  const onAdd = (e) => {
-    setConfirmar(true);
-    setCantidad(e);
+  const { addItem } = useItemContext();
+
+  const onAdd = (quantity) => {
+    confirmar(true);
+    addItem(item, quantity);
   };
 
   return (
@@ -40,7 +43,14 @@ const ItemDetail = ({ item }) => {
         </CardActionArea>
       </Card>
       <div className="container-count">
-        <ItemCount stock={10} onAdd={onAdd} initial={cantidad} />
+        {confirmar ? (
+          <Link to="/Cart">
+            {" "}
+            <button>Finalizar Compra</button>{" "}
+          </Link>
+        ) : (
+          <ItemCount stock={item.stock} initial={1} onAdd={onAdd} />
+        )}
       </div>
     </div>
   );
