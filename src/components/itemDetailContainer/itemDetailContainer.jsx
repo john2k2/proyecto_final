@@ -3,8 +3,7 @@ import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import ItemDetail from "../itemDetail/itemDetail";
 
-import { collection, query, getDocs } from "firebase/firestore";
-import { db } from "../../fireBase/fireBaseConfig";
+import { getFirestore, doc, getDoc } from "firebase/firestore";
 
 const ItemDetailContainer = () => {
   const [item, setItem] = useState({});
@@ -12,14 +11,9 @@ const ItemDetailContainer = () => {
   let { id } = useParams();
 
   useEffect(() => {
-    const q = query(collection(db, "ropa"));
-    getDocs(q).then((querySnapshot) => {
-      querySnapshot.forEach((doc) => {
-        if (doc.id === id) {
-          setItem({ id: doc.id, ...doc.data() });
-        }
-      });
-    });
+    const querydb = getFirestore();
+    const queryDoc = doc(querydb, "ropa", id);
+    getDoc(queryDoc).then((res) => setItem({ id: res.id, ...res.data() }));
   }, [id]);
 
   return (

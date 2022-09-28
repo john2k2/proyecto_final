@@ -9,7 +9,6 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  background-color: rgb(223, 11, 11);
 }
 .card-1 img {
   width: 70%;

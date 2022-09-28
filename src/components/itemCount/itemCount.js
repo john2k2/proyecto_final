@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import "./itemCount.css";
 import { Link } from "react-router-dom";
-import { useItemContext } from "../../context/context";
+import { useItemContext } from "../../context/CartContext";
 
 const ItemCount = ({ stock, onAdd, initial }) => {
   const { count, addItem } = useItemContext();
@@ -11,6 +11,7 @@ const ItemCount = ({ stock, onAdd, initial }) => {
   const sumar = () => {
     if (cantidad < stock) {
       setCantidad(cantidad + 1);
+      console.log(cantidad);
     } else {
       alert("No hay mas stock");
     }
@@ -19,6 +20,7 @@ const ItemCount = ({ stock, onAdd, initial }) => {
   const restar = () => {
     if (cantidad > 1) {
       setCantidad(cantidad - 1);
+      console.log(cantidad);
     } else {
       setCantidad(0);
     }
@@ -26,7 +28,7 @@ const ItemCount = ({ stock, onAdd, initial }) => {
 
   const onAddCart = () => {
     onAdd(cantidad);
-    addItem(cantidad);
+    addItem(count, cantidad);
   };
 
   return (

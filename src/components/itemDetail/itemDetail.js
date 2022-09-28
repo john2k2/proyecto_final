@@ -14,12 +14,9 @@ const ItemDetail = ({ item }) => {
   const [confirmar, setConfirmar] = React.useState(false);
   const [cantidad, setCantidad] = React.useState(0);
 
-  const onAdd = (cantidad) => {
-    if (cantidad > 0) {
-      setConfirmar(true);
-      setCantidad(cantidad);
-      alert("Se agregó al carrito" + cantidad);
-    }
+  const onAdd = (e) => {
+    setConfirmar(true);
+    setCantidad(e);
   };
 
   return (

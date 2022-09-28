@@ -1,22 +1,38 @@
 import "./itemListContainer.css";
 import ItemList from "../itemList/itemList";
 import { useEffect, useState } from "react";
-import { collection, query, getDocs } from "firebase/firestore";
-import { db } from "../../fireBase/fireBaseConfig";
+import {
+  collection,
+  getDocs,
+  getFirestore,
+  query,
+  where,
+} from "firebase/firestore";
+import { useParams } from "react-router-dom";
 
 const ItemListContainer = () => {
-  const q = query(collection(db, "ropa"));
   const [prod, setProd] = useState([]);
 
+  const { filterid } = useParams();
+
   useEffect(() => {
-    getDocs(q).then((querySnapshot) => {
-      const docs = [];
-      querySnapshot.forEach((doc) => {
-        docs.push({ ...doc.data(), id: doc.id });
+    const querydb = getFirestore();
+    const queryCollection = collection(querydb, "ropa");
+    if (filterid) {
+      const queryFilter = query(
+        queryCollection,
+        where("genero", "==", filterid)
+      );
+      getDocs(queryFilter).then((res) => {
+        const data = res.docs.map((doc) => ({ ...doc.data(), id: doc.id }));
+        setProd(data);
       });
-      setProd(docs);
-    });
-  }, []);
+    } else {
+      getDocs(queryCollection).then((res) => {
+        setProd(res.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
+      });
+    }
+  }, [filterid]);
 
   return (
     <div className="container">

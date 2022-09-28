@@ -1,6 +1,6 @@
 import "./CartWidget.css";
 import React from "react";
-import { useItemContext } from "../../context/context";
+import { useItemContext } from "../../context/CartContext";
 
 const CartWidget = () => {
   const { count } = useItemContext();
