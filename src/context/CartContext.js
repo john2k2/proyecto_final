@@ -9,39 +9,30 @@ export const useItemContext = () => {
 };
 
 export const Context = ({ children }) => {
-  const [count, setCount] = useState(0);
-  const [cart, setCart] = useState([]);
+  const [items, setItems] = useState([]);
+  const [count, setCount] = useState(0);}
 
-  const addItem = (item, newQuantity) => {
-    const newCart = cart.filter((cartItem) => cartItem.item.id === item.id);
-    newCart.push({ ...item, quantity: newQuantity });
-    setCart(newCart);
-  };
-
-  const isInCart = (id) => {
-    return cart.some((cartItem) => cartItem.item.id === id);
+  const addItem = (item, quantity) => {
+    const itemInCart = items.find((i) => i.item.id === item.id);
+    if (itemInCart) {
+      itemInCart.quantity += quantity;
+      setItems([...items]);
+    } else {
+      setItems([...items, { item, quantity }]);
+    }
   };
 
   const removeItem = (id) => {
-    const newCart = cart.filter((cartItem) => cartItem.item.id !== id);
-    setCart(newCart);
+    const newCart = items.filter((cartItem) => cartItem.item.id !== id);
+    setItems(newCart);
   };
 
   const clear = () => {
-    setCart([]);
+    setItems([]);
   };
 
   return (
-    <context.Provider
-      value={{
-        cart,
-        count,
-        clear,
-        isInCart,
-        removeItem,
-        addItem,
-      }}
-    >
+    <context.Provider value={{ items, addItem, removeItem, clear }}>
       {children}
     </context.Provider>
   );
