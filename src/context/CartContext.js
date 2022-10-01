@@ -1,14 +1,14 @@
 import { createContext, useEffect, useState } from "react";
 import { useContext } from "react";
 
-const context = createContext();
+const Context = createContext();
 
 export const useItemContext = () => {
-  const contextData = useContext(context);
-  return contextData;
+  const ContextData = useContext(Context);
+  return ContextData;
 };
 
-export const Context = ({ children }) => {
+export const CartContext = ({ children }) => {
   const [cart, setCart] = useState([]);
 
   const addItem = (item, quantity) => {
@@ -51,7 +51,7 @@ export const Context = ({ children }) => {
   };
 
   return (
-    <context.Provider
+    <Context.Provider
       value={{
         cart,
         addItem,
@@ -63,6 +63,8 @@ export const Context = ({ children }) => {
       }}
     >
       {children}
-    </context.Provider>
+    </Context.Provider>
   );
 };
+
+export default CartContext;

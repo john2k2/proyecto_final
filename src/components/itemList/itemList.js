@@ -1,6 +1,6 @@
 import React from "react";
-import "./itemList.css";
-import Item from "../itemDetail/Item";
+import "./ItemList.css";
+import Item from "../ItemDetail/Item";
 import { Link } from "react-router-dom";
 //components
 

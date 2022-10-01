@@ -4,13 +4,13 @@ import CardContent from "@mui/material/CardContent";
 import CardMedia from "@mui/material/CardMedia";
 import Typography from "@mui/material/Typography";
 import { CardActionArea } from "@mui/material";
-import "./itemDetail.css";
+import "./ItemDetail.css";
 import { Link } from "react-router-dom";
-import { useItemContext } from "../../context/CartContext";
+import { useItemContext } from "../../Context/CartContext";
 
 //components
 
-import ItemCount from "../ItemCount/itemCount";
+import ItemCount from "../ItemCount/ItemCount";
 
 const ItemDetail = ({ item }) => {
   const [confirmar, setConfirmar] = React.useState(false);

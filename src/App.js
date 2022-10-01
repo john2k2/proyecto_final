@@ -1,21 +1,21 @@
 import "./App.css";
-import Navbar from "./components/navBar/Navbar";
+import Navbar from "./components/NavBar/Navbar";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
 //Components
 import ItemListContainer from "./components/ItemListContainer/ItemListCointainer";
 import ItemDetailContainer from "./components/ItemDetailContainer/ItemDetailContainer";
-import Context from "./context/CartContext";
-import Filter from "./components/filter/Filter";
+import CardContext from "./Context/CartContext";
+import Filter from "./components/Filter/Filter";
 
 //pages
-import About from "./Pages/About/about";
-import Contact from "./Pages/Contact/contact";
+import About from "./Pages/About/About";
+import Contact from "./Pages/Contact/Contact";
 import Card from "./Pages/Card/Card";
 
 const App = () => {
   return (
-    <Context>
+    <CardContext>
       <Router>
         <div>
           <Navbar />
@@ -30,7 +30,7 @@ const App = () => {
           </Routes>
         </div>
       </Router>
-    </Context>
+    </CardContext>
   );
 };
 
