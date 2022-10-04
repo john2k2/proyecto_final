@@ -15,19 +15,21 @@ import ItemCount from "../ItemCount/ItemCount";
 const ItemDetail = ({ item }) => {
   const [confirmar, setConfirmar] = React.useState(false);
 
-  const { addItem, removeItem, clear, isInCart } = useItemContext();
+  const { addItem } = useItemContext();
 
-
+  const onCart = (count) => {
+    addItem(item, count);
+  };
 
   return (
     <div>
       <Card className="container" sx={{ maxWidth: 445 }}>
-        <CardActionArea className="card">
+        <CardActionArea>
           <CardMedia
             component="img"
-            image={item.img}
             height="140"
-            alt="green iguana"
+            image={item.img}
+            alt={item.title}
           />
           <CardContent>
             <Typography gutterBottom variant="h5" component="div">
@@ -39,15 +41,19 @@ const ItemDetail = ({ item }) => {
           </CardContent>
         </CardActionArea>
       </Card>
-      <div className="container-count">
-        {confirmar ? (
-          <Link to="/Cart">
-            <button>Finalizar Compra</button>
-          </Link>
-        ) : (
-          <ItemCount stock={item.stock} initial={1} onAdd={addItem} />
-        )}
+      <div className="btn-count">
+        <ItemCount 
+          stock={item.stock}
+          initial={1}
+          onCart={onCart}
+          setPurchase={setConfirmar}
+        />
       </div>
+      {confirmar && (
+        <Link to="/Cart">
+          <button>Finalizar Compra</button>
+        </Link>
+      )}
     </div>
   );
 };

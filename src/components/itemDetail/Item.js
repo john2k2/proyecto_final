@@ -8,7 +8,7 @@ import "./Item.css";
 
 const Item = ({ prod }) => {
   return (
-    <div className="container-card">
+    <div className="container">
       <Card className="card-1" sx={{ maxWidth: 345 }}>
         <CardActionArea>
           <CardMedia component="img" image={prod.img} alt={prod.title} />

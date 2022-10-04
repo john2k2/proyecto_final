@@ -35,7 +35,7 @@ const ItemListContainer = () => {
   }, [filterid]);
 
   return (
-    <div className="container">
+    <div className="item-list">
       <ItemList prod={prod} />
     </div>
   );

@@ -1,22 +1,27 @@
 import React from "react";
 import { Link } from "react-router-dom";
-
+import "./Filter.css";
 const Filter = () => {
   return (
-    <div>
-      <ul>
+    <div className="container">
+      <ul className="lista-completa">
         <li>
-          <Link to="/ropa/hombre">Hombre</Link>
+          <Link className="Link" to="/ropa/hombre">
+            Hombre
+          </Link>
         </li>
         <li>
-          <Link to="/ropa/mujer">Mujer</Link>
+          <Link className="Link" to="/ropa/mujer">
+            Mujer
+          </Link>
         </li>
         <li>
-          <Link to="/ropa/unisex">Unisex</Link>
+          <Link className="Link" to="/ropa/unisex">
+            Unisex
+          </Link>
         </li>
       </ul>
     </div>
   );
 };
-
 export default Filter;

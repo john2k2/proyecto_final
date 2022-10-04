@@ -1,13 +1,8 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "./ItemCount.css";
 import { Link } from "react-router-dom";
-import { useItemContext } from "../../Context/CartContext";
 
-const ItemCount = ({ stock, initial }) => {
-  const { item, quantity, addItem, removeItem, clear, isInCart, cart } =
-    useItemContext();
-  console.log(cart);
-
+const ItemCount = ({ stock, initial, onCart, setPurchase }) => {
   const [count, setCount] = useState(initial);
 
   const onAdd = () => {
@@ -22,27 +17,31 @@ const ItemCount = ({ stock, initial }) => {
     }
   };
 
-  const onAddToCart = () => {
-    addItem(item, quantity);
-  };
+  useEffect(() => {
+    if (count > stock) {
+      setCount(stock);
+    }
+  }, [count, stock]);
 
   return (
-    <div className="container1">
-      <h2>{count} </h2>
-      <div className="container2">
-        <div className="count-btn">
+    <div className="container-count">
+      <div className="count">
+        <div className="btn-count">
           <button onClick={onRemove}>-</button>
+          <p>{count}</p>
           <button onClick={onAdd}>+</button>
         </div>
-        <div className="count-carrito">
-          <Link to="/Cart">
-            <button>Finalizar Compra</button>
-          </Link>
-          <button onClick={onAddToCart}>Agregar al carrito</button>
+        <div className="btn">
+          <button onClick={() => onCart(count)}>Agregar al carrito</button>
+
+          {setPurchase && (
+            <Link to="/Cart">
+              <button>Finalizar Compra</button>
+            </Link>
+          )}
         </div>
       </div>
     </div>
   );
 };
-
 export default ItemCount;
