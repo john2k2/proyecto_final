@@ -17,6 +17,8 @@ const ItemDetail = ({ item }) => {
 
   const { addItem, removeItem, clear, isInCart } = useItemContext();
 
+
+
   return (
     <div>
       <Card className="container" sx={{ maxWidth: 445 }}>
@@ -40,7 +42,7 @@ const ItemDetail = ({ item }) => {
       <div className="container-count">
         {confirmar ? (
           <Link to="/Cart">
-            <button>Finalizar Compra</button>{" "}
+            <button>Finalizar Compra</button>
           </Link>
         ) : (
           <ItemCount stock={item.stock} initial={1} onAdd={addItem} />
