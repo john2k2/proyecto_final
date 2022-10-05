@@ -4,36 +4,56 @@ import CardContent from "@mui/material/CardContent";
 import CardMedia from "@mui/material/CardMedia";
 import Typography from "@mui/material/Typography";
 import { CardActionArea } from "@mui/material";
-import "./itemDetail.css";
+import "./ItemDetail.css";
+import { Link } from "react-router-dom";
+import { useItemContext } from "../../Context/CartContext";
+
 //components
 
-import ItemCount from "../ItemCount/itemCount";
+import ItemCount from "../ItemCount/ItemCount";
 
 const ItemDetail = ({ item }) => {
+  const [confirmar, setConfirmar] = React.useState(false);
+
+  const { addItem } = useItemContext();
+
+  const onCart = (count) => {
+    addItem(item, count);
+  };
 
   return (
     <div>
       <Card className="container" sx={{ maxWidth: 445 }}>
-        <CardActionArea className="card">
+        <CardActionArea>
           <CardMedia
             component="img"
-            image={item.image}
             height="140"
-            alt="green iguana"
+            image={item.img}
+            alt={item.title}
           />
           <CardContent>
             <Typography gutterBottom variant="h5" component="div">
               <div className="detalle">
                 <h2>${item.price}</h2>
-                <p>{item.description}</p>
+                <p>{item.title}</p>
               </div>
             </Typography>
           </CardContent>
         </CardActionArea>
       </Card>
-      <div className="container-count">
-        <ItemCount stock={5} setPurchase={true} name={item.title} />
+      <div className="btn-count">
+        <ItemCount 
+          stock={item.stock}
+          initial={1}
+          onCart={onCart}
+          setPurchase={setConfirmar}
+        />
       </div>
+      {confirmar && (
+        <Link to="/Cart">
+          <button>Finalizar Compra</button>
+        </Link>
+      )}
     </div>
   );
 };

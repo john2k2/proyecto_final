@@ -1,20 +1,42 @@
-import "./itemListContainer.css";
-import ItemList from "../itemList/itemList";
+import "./ItemListContainer.css";
+import ItemList from "../ItemList/ItemList";
 import { useEffect, useState } from "react";
-
+import {
+  collection,
+  getDocs,
+  getFirestore,
+  query,
+  where,
+} from "firebase/firestore";
+import { useParams } from "react-router-dom";
 
 const ItemListContainer = () => {
-  const [producto, setProductos] = useState([]);
+  const [prod, setProd] = useState([]);
+
+  const { filterid } = useParams();
 
   useEffect(() => {
-    fetch("https://fakestoreapi.com/products")
-      .then((res) => res.json())
-      .then((json) => setProductos(json));
-  }, []);
+    const querydb = getFirestore();
+    const queryCollection = collection(querydb, "ropa");
+    if (filterid) {
+      const queryFilter = query(
+        queryCollection,
+        where("genero", "==", filterid)
+      );
+      getDocs(queryFilter).then((res) => {
+        const data = res.docs.map((doc) => ({ ...doc.data(), id: doc.id }));
+        setProd(data);
+      });
+    } else {
+      getDocs(queryCollection).then((res) => {
+        setProd(res.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
+      });
+    }
+  }, [filterid]);
 
   return (
-    <div className="container">
-      <ItemList prod={producto} />
+    <div className="item-list">
+      <ItemList prod={prod} />
     </div>
   );
 };

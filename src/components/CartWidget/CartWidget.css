@@ -5,20 +5,26 @@
 }
 .carrito {
   display: flex;
-  justify-content: center;
   align-items: center;
-  width: 10%;
+  justify-content: center;
+  width: 100%;
   height: 100%;
+  background-color: rgb(198, 196, 196);
 }
-.carrito span {
-  font-size: 1.5rem;
+.carrito-2 {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: auto;
+  height: 100%;
+  text-decoration: none;
+  color: rgb(0, 0, 0);
+  font-size: 2rem;
   font-weight: bold;
-  color: rgb(232, 232, 232);
-  text-align: center;
 }
-.carrito p {
-  font-size: 1rem;
-  font-weight: bold;
-  color: rgb(232, 232, 232);
-  text-align: center;
+.carrito-2 span {
+  margin: 0 20%;
+  list-style: none;
+  text-decoration: none;
+  color: black;
 }
