@@ -1,5 +1,6 @@
-import React from "react";
 import { useItemContext } from "../../Context/CartContext";
+import { Link } from "react-router-dom";
+import "./Card.css";
 
 const Card = () => {
   const { cart, removeItem, clear, totalProductsCart, totalPriceCart } =
@@ -61,11 +62,14 @@ const Card = () => {
           <h3 className="text-center">Total a pagar: ${totalPriceCart()}</h3>
         </div>
       </div>
-      <div className="row">
-        <div className="col-12">
+      <div className="row container">
+        <div className="col-6 btn0">
           <button className="btn btn-danger bg-danger" onClick={() => clear()}>
             Vaciar carrito
           </button>
+          <Link to="/Shop">
+            <button className="btn2 btn-danger bg-danger">Comprar</button>
+          </Link>
         </div>
       </div>
     </div>

@@ -13,6 +13,7 @@ import Filter from "./components/Filter/Filter";
 import About from "./Pages/About/About";
 import Contact from "./Pages/Contact/Contact";
 import Card from "./Pages/Card/Card";
+import Shop from "./Pages/Shop/Shop";
 
 const App = () => {
   return (
@@ -28,6 +29,7 @@ const App = () => {
             <Route path="/detail/:id" element={<ItemDetailContainer />} />
             <Route path="/cart" element={<Card />} />
             <Route path="/ropa/:filterid" element={<ItemListContainer />} />
+            <Route path="/Shop" element={<Shop />} />
           </Routes>
         </div>
       </Router>
