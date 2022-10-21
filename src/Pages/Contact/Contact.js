@@ -10,6 +10,7 @@ const contact = () => {
         Ullam numquam odio, fugit dicta unde sed? Fugit quae quia hic libero, ex porro aliquid soluta, pariatur quis eum reiciendis. Sequi voluptatum, perspiciatis aperiam cum delectus animi deserunt repellat consectetur.
         Quo, eligendi, quam vitae expedita aperiam magnam non minima at vero et labore perferendis. Laudantium sequi, assumenda ea, nulla libero quaerat ab ex dolore, recusandae distinctio qui expedita explicabo nisi?
       </h3>
+    </div>
   );
 };
 
