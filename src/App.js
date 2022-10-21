@@ -15,6 +15,7 @@ import Contact from "./Pages/Contact/Contact";
 import Card from "./Pages/Card/Card";
 import Shop from "./Pages/Shop/Shop";
 
+
 const App = () => {
   return (
     <CardContext>

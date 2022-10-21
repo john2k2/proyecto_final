@@ -2,6 +2,9 @@ import { useItemContext } from "../../Context/CartContext";
 import { Link } from "react-router-dom";
 import "./Card.css";
 
+import React from "react";
+
+
 const Card = () => {
   const { cart, removeItem, clear, totalProductsCart, totalPriceCart } =
     useItemContext();

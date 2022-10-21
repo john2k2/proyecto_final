@@ -22,7 +22,7 @@ const about = () => {
         sequi recusandae laborum? Possimus accusamus reprehenderit facere.
         Itaque, repellendus cum.
       </h2>
-    </div>
+    
   );
 };
 
